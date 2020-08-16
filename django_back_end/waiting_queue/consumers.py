@@ -34,7 +34,7 @@ class QueueConsumer(WebsocketConsumer):
         queuee = (QueueEntry.objects.create(name=name))
         content = {
             'command': 'new_entry',
-            'queue': self.queuee_to_json(queuee)
+            'queue': [self.queuee_to_json(queuee)]
         }
         print(content)
         return self.send_queue_entry(content)
@@ -49,10 +49,10 @@ class QueueConsumer(WebsocketConsumer):
         self.room_group_name = 'queue_%s' % self.room_name
 
         # Join room group
-        async_to_sync(self.channel_layer.group_add(
+        async_to_sync(self.channel_layer.group_add)(
             self.room_group_name,
             self.channel_name
-        ))
+        )
 
         self.accept()
 
@@ -69,8 +69,6 @@ class QueueConsumer(WebsocketConsumer):
         self.commands[data['command']](self, data)
 
     def send_queue_entry(self, data):
-        print("send_q_entry")
-        print(data)
         async_to_sync(self.channel_layer.group_send)(
             self.room_group_name,
             {
@@ -85,6 +83,5 @@ class QueueConsumer(WebsocketConsumer):
     def queue_entry(self, event):
         queue = event['queue']
 
-        print('sending a queue entry')
         # Send queue entry to WebSocket
         self.send(text_data=json.dumps(queue))

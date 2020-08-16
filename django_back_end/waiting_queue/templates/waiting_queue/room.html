@@ -7,10 +7,12 @@
 <body>
     <textarea id="queue-log" cols="100" rows="20"></textarea><br>
     <input id="name-input" type="text" size="100" placeholder="Name"><br>
+    <input id="fetch-queue" type="button" value="Fetch">
     <input id="name-submit" type="button" value="Send">
     {{ room_name|json_script:"room-name" }}
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
+        document.querySelector('#queue-log').value = '';
 
         const queueSocket = new WebSocket(
             'ws://'
@@ -23,7 +25,11 @@
         queueSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
             console.log(data);
-            document.querySelector('#queue-log').value += (data.name + '\n');
+            const queue = data['queue'];
+            console.log(queue);
+            for (let i = 0; i < queue.length; i++) {
+                document.querySelector('#queue-log').value += (queue[i]['name'] + '\n');
+            }
         };
 
         queueSocket.onclose = function(e) {
@@ -46,6 +52,14 @@
             }));
             nameInputDom.value = '';
         };
+
+        document.querySelector('#fetch-queue').onclick = function(e) {
+            queueSocket.send(JSON.stringify({
+                'command': 'fetch_queue',
+            }));
+            document.querySelector('#queue-log').value = '';
+        };
+
     </script>
 </body>
 </html>
