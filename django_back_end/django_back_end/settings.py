@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'channels',
+    'waiting_queue',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +71,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'django_back_end.wsgi.application'
+# Channels
+ASGI_APPLICATION = 'django_back_end.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 
 # Database
@@ -118,3 +131,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
