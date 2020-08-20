@@ -9,7 +9,7 @@ class QueueConsumer(WebsocketConsumer):
 
     def fetch_queue(self, data):
         print('fetch')
-        queue = QueueEntry.get_queue()
+        queue = QueueEntry.get_queue(self.room_group_name)
         content = {
             'queue': self.queue_to_json(queue)
         }
@@ -31,7 +31,7 @@ class QueueConsumer(WebsocketConsumer):
     def new_entry(self, data):
         print('new entry')
         name = data['name']
-        queuee = (QueueEntry.objects.create(name=name))
+        queuee = (QueueEntry.objects.create(name=name, room=self.room_group_name))
         content = {
             'command': 'new_entry',
             'queue': [self.queuee_to_json(queuee)]
