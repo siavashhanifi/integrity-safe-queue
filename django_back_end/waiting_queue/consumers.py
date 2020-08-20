@@ -2,14 +2,13 @@ import json
 from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
 
-from .models import QueueEntry
-
+queues = {}
 
 class QueueConsumer(WebsocketConsumer):
 
     def fetch_queue(self, data):
         print('fetch')
-        queue = QueueEntry.get_queue(self.room_group_name)
+        queue = queues[self.room_group_name] if self.room_group_name in queues else []
         content = {
             'queue': self.queue_to_json(queue)
         }
@@ -23,20 +22,21 @@ class QueueConsumer(WebsocketConsumer):
 
     def queuee_to_json(self, queuee):
         return {
-            'name':queuee.name,
-            'timestamp': str(queuee.timestamp)
+            'name':queuee,
         }
 
 
     def new_entry(self, data):
         print('new entry')
         name = data['name']
-        queuee = (QueueEntry.objects.create(name=name, room=self.room_group_name))
+        if self.room_group_name not in queues:
+            queues[self.room_group_name] = []
+        queues[self.room_group_name].append(name)
+
         content = {
             'command': 'new_entry',
-            'queue': [self.queuee_to_json(queuee)]
+            'queue': [self.queuee_to_json(name)]
         }
-        print(content)
         return self.send_queue_entry(content)
 
     commands = {
