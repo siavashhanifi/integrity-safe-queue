@@ -3,5 +3,5 @@ from django.urls import re_path
 from . import consumers
 
 websocket_urlpatterns = [
-    re_path(r'ws/queue/(?P<room_name>\w+)/$', consumers.QueueConsumer),
+    re_path(r'ws/queue/(?P<QueueSession>\w+)/$', consumers.QueueConsumer),
 ]
