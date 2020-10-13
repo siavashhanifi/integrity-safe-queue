@@ -22,7 +22,7 @@ console.log(props.userState.isSupervisor);
     <React.Fragment>
             <CssBaseline /> 
             <Container maxWidth={false} className={classes.container} >
-                 <JoinOrCreateSession/>
+                 <QueueSession/>
             </Container>
     </React.Fragment>
   );
