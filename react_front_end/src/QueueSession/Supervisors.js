@@ -24,7 +24,11 @@ export default function Supervisors(props) {
     }
     );
     return(
-        <Grid container spacing={2}>
+        <Grid   container
+        spacing={2}
+        direction="column"
+        alignItems="center"
+        justify="center">
         {listSupervisors}
         </Grid>
     );

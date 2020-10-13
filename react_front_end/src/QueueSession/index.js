@@ -6,7 +6,9 @@ import Supervisors from './Supervisors';
 
 
 const useStyles = makeStyles({
-
+ box:{
+     backgroundColor: "grey",
+ }
     
 });
 
@@ -20,23 +22,28 @@ export default function QueueSession() {
                         }
 
     return ( 
+
         <Grid
         container
-        spacing={10}
-        direction="column"
-        alignItems="center"
-        justify="center">
-            <Grid item>
-                <Typography h1>Queue Session: {sessionId}</Typography>
+        direction="row"
+        justify="center"
+        alignItems="flex-start"
+        spacing={2}>
+
+            <Grid item xs={8}>
+            <Box className={classes.box} height="90vh">
+                <Typography h1>Queue:</Typography> 
+                    <Queue queuees={queueState.queuees}/>
+            </Box>
             </Grid>
-            <Grid item>
-                <Box className={classes.box}>
+
+            <Grid item xs={4}>
+                <Box className={classes.box} height="90vh" >
+                <Typography h1>Supervisors:</Typography>
                 <Supervisors supervisors={queueState.supervisors}/>
                 </Box>
             </Grid>
-            <Grid item>
-                <Queue queuees={queueState.queuees}/>
-            </Grid>
+
         </Grid>
     );
 }

@@ -1,11 +1,16 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, Box, Button } from "@material-ui/core";
 import { ArrowForward } from "@material-ui/icons";
 import You from './Queue/You';
 import Queuee from './Queue/Queuee';
+import { blue } from "@material-ui/core/colors";
 
-const useStyles = makeStyles({});
+const useStyles = makeStyles({
+  queueeList: {
+    backgroundColor: blue,
+  }
+});
 
 export default function Queue(props) {
   const classes = useStyles();
@@ -43,28 +48,43 @@ export default function Queue(props) {
       container
       spacing={3}
       direction="column"
-      alignItems="center"
+      alignItems="flex-start"
       justify="center"
     >
-      <Grid item>Queue:</Grid>
-      <Grid item>
+
+      <Grid item className={classes.queueeList} xs={12}>
+      <Box height="100%">
         <Grid container>
-          <Grid item>
-            <Grid container>
-              <Grid item>
-                <Typography>First</Typography>
-              </Grid>
-              <Grid item>
-                <ArrowForward />
-              </Grid>
-            </Grid>
-          </Grid>
           {listQueuees}
         </Grid>
+      </Box>
       </Grid>
-      <Grid item>Not in queue:</Grid>
-      <Grid item>
+
+      <Grid item xs={12}>
+          <Grid container
+            direction="row"
+            alignItems="center"
+            justify="center"
+            spacing={2}
+          >
+
+            <Grid item xs={6}><Button color="primary" variant="contained">
+                Join Queue
+              </Button></Grid> 
+              
+            <Grid item xs={6}><Button color="secondary" variant="contained">
+                Leave Queue
+              </Button></Grid>
+
+        </Grid>
+
+      </Grid>
+
+      <Grid item xs={12}> 
+        <Box bgcolor="blue">
+        <Typography>Not in queue:</Typography>
         <Grid container>{listNotInQueue}</Grid>
+        </Box>
       </Grid>
     </Grid>
   );
