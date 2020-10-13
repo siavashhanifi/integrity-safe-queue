@@ -1,68 +1,71 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core';
-import { Person, PersonPinCircle, ArrowForward } from '@material-ui/icons';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid, Typography } from "@material-ui/core";
+import { ArrowForward } from "@material-ui/icons";
+import You from './Queue/You';
+import Queuee from './Queue/Queuee';
 
-
-
-const useStyles = makeStyles({
-
-});
-
+const useStyles = makeStyles({});
 
 export default function Queue(props) {
-    const classes = useStyles();
-    const userId = 1;
+  const classes = useStyles();
+  const userId = 1;
 
-    //if(queuee.id == state.userId) add arrow pointer
-    const listNotInQueue = [];
-    const listQueuees = []
-    props.queuees.map((queuee) => {
-        if (!queuee.inQueue) listNotInQueue.push(<Grid item><Person color="error" fontSize="large" /></Grid>);
-        else {
-            if (queuee.id === userId)
-                listQueuees.push(<Grid item>
-                    <Grid container
-                                spacing={0}
-                                direction="column"
-                                alignItems="center"
-                                justify="center">
-                        <Grid item>
-                            <PersonPinCircle fontSize="large" color="secondary" />
-                        </Grid>
-                        <Grid item><Typography variant="caption" color="secondary">You</Typography></Grid>
-                            </Grid>
-                    </Grid>);
-            else
-                listQueuees.push(<Grid item><Person fontSize="large" color="primary" /></Grid>);
-        }
-    }
+  const listNotInQueue = [];
+  const listQueuees = [];
+  var queuee;
 
+  for(queuee of props.queuees){
+    if (!queuee.inQueue)
+    listNotInQueue.push(
+      <Grid item>
+          <Queuee inQueue={false}/>
+      </Grid>
     );
-    return (
-        <Grid
-            container
-            spacing={3}
-            direction="column"
-            alignItems="center"
-            justify="center">
-            <Grid item>Queue:</Grid>
+    else{
+        if (queuee.id === userId)
+          listQueuees.push(
             <Grid item>
-                <Grid container>
-                    <Grid item><Grid container>
-                        <Grid item><Typography>First</Typography></Grid>
-                        <Grid item><ArrowForward /></Grid>
-                    </Grid>
-                    </Grid>
-                    {listQueuees}
-                </Grid>
+              <You/>
             </Grid>
-            <Grid item>Not in queue:</Grid>
+          );
+        else
+          listQueuees.push(
             <Grid item>
-                <Grid container>
-                    {listNotInQueue}
-                </Grid>
+                <Queuee inQueue={true}/>
             </Grid>
+          );
+      }
+  }
+
+  return (
+    <Grid
+      container
+      spacing={3}
+      direction="column"
+      alignItems="center"
+      justify="center"
+    >
+      <Grid item>Queue:</Grid>
+      <Grid item>
+        <Grid container>
+          <Grid item>
+            <Grid container>
+              <Grid item>
+                <Typography>First</Typography>
+              </Grid>
+              <Grid item>
+                <ArrowForward />
+              </Grid>
+            </Grid>
+          </Grid>
+          {listQueuees}
         </Grid>
-    );
+      </Grid>
+      <Grid item>Not in queue:</Grid>
+      <Grid item>
+        <Grid container>{listNotInQueue}</Grid>
+      </Grid>
+    </Grid>
+  );
 }
