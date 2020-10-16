@@ -1,15 +1,22 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid, Typography } from '@material-ui/core';
+import { Box, Grid, Typography, Button } from '@material-ui/core';
 import Queue  from './Queue';
 import Supervisors from './Supervisors';
 
 
-const useStyles = makeStyles({
- box:{
-     backgroundColor: "grey",
- }
-    
+const useStyles = makeStyles((theme) => ({
+
+    buttons: {
+        '& > *': {
+          margin: theme.spacing(1),
+        },
+      },
+
+ content:{
+    flexGrow: 1,
+   
+ },
 });
 
 
@@ -21,29 +28,39 @@ export default function QueueSession() {
                         queuees: [{id: 4, inQueue: true}, {id:0, inQueue: false},{id:1, inQueue: true}, {id:2, inQueue: true}, {id:3, inQueue: false}]
                         }
 
-    return ( 
-
-        <Grid
-        container
-        direction="row"
-        justify="center"
-        alignItems="flex-start"
-        spacing={2}>
-
-            <Grid item xs={8}>
-            <Box className={classes.box} height="90vh">
-                <Typography h1>Queue:</Typography> 
-                    <Queue queuees={queueState.queuees}/>
-            </Box>
-            </Grid>
-
-            <Grid item xs={4}>
-                <Box className={classes.box} height="90vh" >
-                <Typography h1>Supervisors:</Typography>
-                <Supervisors supervisors={queueState.supervisors}/>
+    return (
+       <Grid container
+            spacing={1}
+            className={classes.content}
+            alignItems="center"
+            justify="center"
+       >
+           <Grid item xs={8}> 
+                <Box bgcolor="red" height="50vh" padding={3} >
+                    <Typography>Queue</Typography>
                 </Box>
-            </Grid>
+           </Grid>
 
-        </Grid>
+           <Grid item xs={4}>
+                <Box bgcolor="blue" height="50vh" padding={3}>
+                    <Typography>Supervisors</Typography>
+                </Box>
+           </Grid>
+
+           <Grid item xs={12}>
+                <Box bgcolor="green" height="10vh" padding={3} className={classes.buttons}>
+                    <Button color="primary" variant="contained" space>Join Queue</Button>
+                    <Button color="secondary" variant="contained">Leave Queue</Button>
+                    <Button color="secondary" variant="contained">Leave Session</Button>
+                </Box>
+           </Grid>
+
+           <Grid item xs={12}>
+           <Box bgcolor="yellow" height="30vh" padding={3}>
+               <Typography>Not in queue</Typography>
+           </Box>
+           </Grid>
+
+       </Grid>
     );
 }

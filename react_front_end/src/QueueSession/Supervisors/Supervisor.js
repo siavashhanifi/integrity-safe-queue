@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, Box } from "@material-ui/core";
 import { Person, SupervisedUserCircle } from "@material-ui/icons";
 
 export default function Student(props) {
@@ -56,5 +56,5 @@ export default function Student(props) {
         </Grid>
       </Grid>
     );
-  return <div>{supervisor}</div>;
-}
+  return <Box></Box>;
+}//<div>{supervisor}</div>

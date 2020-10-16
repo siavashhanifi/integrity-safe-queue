@@ -44,7 +44,8 @@ export default function Queue(props) {
   }
 
   return (
-    <Grid
+    <Box bgcolor="blue"></Box>
+   /* <Grid
       container
       spacing={3}
       direction="column"
@@ -86,6 +87,6 @@ export default function Queue(props) {
         <Grid container>{listNotInQueue}</Grid>
         </Box>
       </Grid>
-    </Grid>
+    </Grid>*/
   );
 }
