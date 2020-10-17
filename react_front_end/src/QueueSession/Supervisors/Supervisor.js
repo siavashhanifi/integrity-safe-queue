@@ -7,54 +7,17 @@ export default function Student(props) {
   let supervisor;
   if (isHelping)
     supervisor = (
-      <Grid container spacing={1}>
-        <Grid item>
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justify="center"
-          >
-            <Grid item>
-              <SupervisedUserCircle fontSize="large" />
-            </Grid>
-            <Grid item>
-              <Typography>{props.supervisorDetails.name}</Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item>
-          <Typography>is helping</Typography>
-        </Grid>
-        <Grid item>
-          <Person color="primary" />
-        </Grid>
-      </Grid>
+      <Box>
+        <SupervisedUserCircle fontSize="large" />
+        <Typography variant="caption" >{props.supervisorDetails.name}(busy)</Typography>
+      </Box>
     );
   else
     supervisor = (
-      <Grid container spacing={1}>
-        <Grid item>
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justify="center"
-          >
-            <Grid item>
-              <SupervisedUserCircle htmlColor="#4caf50" fontSize="large" />
-            </Grid>
-            <Grid item>
-              <Typography>{props.supervisorDetails.name}</Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item>
-          <Typography>is available</Typography>
-        </Grid>
-      </Grid>
+      <Box>
+        <SupervisedUserCircle htmlColor="#4caf50" fontSize="large" />
+        <Typography variant="caption" >{props.supervisorDetails.name}(available)</Typography>
+      </Box>
     );
   return <div>{supervisor}</div>;
 }//

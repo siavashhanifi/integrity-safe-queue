@@ -14,22 +14,25 @@ export default function Supervisors(props) {
 
     const listSupervisors = props.supervisors.map((supervisor) =>{
     if(supervisor.isHelping)
-        return (<Grid item>
+        return (<Grid item >
                    <Supervisor supervisorDetails={supervisor} isHelping={true}/>
                 </Grid>)
     else
-        return (<Grid item>
-            <Supervisor supervisorDetails={supervisor} isHelping={false}/>
-        </Grid>)
+        return (<Grid item >
+                    <Supervisor supervisorDetails={supervisor} isHelping={false}/>
+                </Grid>)
     }
     );
     return(
-        <Grid   container
-        spacing={2}
+        <Grid 
+        container
+        spacing={1}
         direction="column"
         alignItems="flex-start"
-        justify="center">
-        {listSupervisors}
+        justify="flex-start"
+        wrap='wrap'
+        style={{ height:'100%', width: '100%' }}>
+            {listSupervisors}
         </Grid>
     );
 }

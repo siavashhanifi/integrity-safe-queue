@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Typography, Box, Button } from "@material-ui/core";
-import { ArrowForward } from "@material-ui/icons";
+import { Grid } from "@material-ui/core";
 import You from './Queue/You';
 import Queuee from './Queue/Queuee';
 import { blue } from "@material-ui/core/colors";
@@ -41,7 +40,7 @@ export default function NotInQueue(props) {
   return (
   <Grid
       container
-      spacing={3}
+      spacing={1}
       direction="row"
       alignItems="flex-start"
       justify="flex-start"

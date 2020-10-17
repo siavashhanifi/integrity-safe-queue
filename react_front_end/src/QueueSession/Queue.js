@@ -19,25 +19,27 @@ export default function Queue(props) {
   const listNotInQueue = [];
   const listQueuees = [];
   var queuee;
-
+  var index = 1;
   for(queuee of props.queuees){
     if (!queuee.inQueue)
     listNotInQueue.push(
       <Grid item>
-          <Queuee inQueue={false}/>
+          <Queuee inQueue={false} />
       </Grid>
     );
     else{
-        if (queuee.id === userId)
+        if (queuee.id === userId){
           listQueuees.push(
             <Grid item>
               <You/>
             </Grid>
           );
+          index++;
+        }
         else
           listQueuees.push(
             <Grid item>
-                <Queuee inQueue={true}/>
+                <Queuee inQueue={true} number={index++}/>
             </Grid>
           );
       }
@@ -46,7 +48,7 @@ export default function Queue(props) {
   return (
   <Grid
       container
-      spacing={3}
+      spacing={1}
       direction="row"
       alignItems="flex-start"
       justify="flex-start"

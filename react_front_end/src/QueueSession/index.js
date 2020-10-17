@@ -4,6 +4,7 @@ import { Box, Grid, Typography, Button, Paper } from '@material-ui/core';
 import Queue  from './Queue';
 import Supervisors from './Supervisors';
 import NotInQueue from './NotInQueue';
+import { Autorenew } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -15,8 +16,7 @@ infoBox: {
 supervisorsBox: {
     width: '100%',
     height: '90%',
-    overflowY: 'scroll',
-    overflowX: 'hidden'
+    overflow: 'auto'
 },
 buttons: {
     width: '50vw',
@@ -27,7 +27,7 @@ buttons: {
 },
  content:{
     flexGrow: 1,
-    backgroundColor: 'blue',
+    backgroundColor: '#50055E',
     height:'100vh',
     width: '100vw',
     margin:'0 auto',
@@ -52,15 +52,15 @@ export default function QueueSession() {
             justify="center"
        >
            <Grid item xs={6}> 
-                <Box bgcolor="beige" height="50vh" padding={3} >
+                <Box bgcolor="white" height="50vh" padding={3} borderRadius={15} >
                     <Typography>Queue:</Typography>
                     <Queue queuees={queueState.queuees}/>
                 </Box>
            </Grid>
 
            <Grid item xs={6}>
-                <Box bgcolor="beige" height="50vh" padding={3} >
-                    <Typography>Supervisors</Typography>
+                <Box bgcolor="white" height="50vh" padding={3} borderRadius={15}>
+                    <Typography>Supervisors:</Typography>
                     <Box className={classes.supervisorsBox}>
                         <Supervisors supervisors={queueState.supervisors}/>
                     </Box>
@@ -76,14 +76,14 @@ export default function QueueSession() {
            </Grid>
 
            <Grid item xs={6}>
-                <Box bgcolor="beige" height="30vh" padding={3}>
+                <Box bgcolor="white" height="30vh" padding={3} borderRadius={15}>
                     <Typography>Not in queue:</Typography>
                     <NotInQueue queuees={queueState.queuees}/>
                 </Box>
            </Grid>
 
            <Grid item xs={6}>
-                <Box bgcolor="beige" height="30vh" padding={3} textAlign='left' className={classes.infoBox}>
+                <Box bgcolor="white" height="30vh" padding={3} textAlign='left' className={classes.infoBox} borderRadius={15}>
                     <Typography>Session Info:</Typography>
                     <Typography display='inline'>Queue session: {queueState.sessionId}</Typography>
                     <Typography display='inline'>Persons in Queue: {queueState.peopleInQueue}</Typography>
