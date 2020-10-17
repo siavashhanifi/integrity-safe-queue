@@ -7,7 +7,20 @@ import NotInQueue from './NotInQueue';
 
 
 const useStyles = makeStyles((theme) => ({
+infoBox: {
+        '& > *': {
+          margin: theme.spacing(1),
+        },
+},
+supervisorsBox: {
+    width: '100%',
+    height: '90%',
+    overflowY: 'scroll',
+    overflowX: 'hidden'
+},
 buttons: {
+    width: '50vw',
+    margin: '0 auto',
         '& > *': {
           margin: theme.spacing(1),
         },
@@ -27,8 +40,9 @@ export default function QueueSession() {
     const sessionId = 1337;
     const queueState = {sessionId: 1337,
                         supervisors: [{ name: "Leif", isHelping: true }, { name: "Robert", isHelping: true }, { name: "Anders", isHelping: false }],
-                        queuees: [{id: 4, inQueue: true}, {id:0, inQueue: false},{id:1, inQueue: true}, {id:2, inQueue: true}, {id:3, inQueue: false}]
-                        }
+                        queuees: [{id: 4, inQueue: true}, {id:0, inQueue: false},{id:1, inQueue: true}, {id:2, inQueue: true}, {id:3, inQueue: false}],
+                        peopleInQueue: 3,
+                    }
 
     return (
        <Grid container
@@ -37,17 +51,19 @@ export default function QueueSession() {
             alignItems="center"
             justify="center"
        >
-           <Grid item xs={8}> 
+           <Grid item xs={6}> 
                 <Box bgcolor="beige" height="50vh" padding={3} >
-                    <Typography>Queue</Typography>
+                    <Typography>Queue:</Typography>
                     <Queue queuees={queueState.queuees}/>
                 </Box>
            </Grid>
 
-           <Grid item xs={4}>
-                <Box bgcolor="beige" height="50vh" padding={3}>
+           <Grid item xs={6}>
+                <Box bgcolor="beige" height="50vh" padding={3} >
                     <Typography>Supervisors</Typography>
-                    <Supervisors supervisors={queueState.supervisors}/>
+                    <Box className={classes.supervisorsBox}>
+                        <Supervisors supervisors={queueState.supervisors}/>
+                    </Box>
                 </Box>
            </Grid>
 
@@ -59,11 +75,20 @@ export default function QueueSession() {
                 </Box>
            </Grid>
 
-           <Grid item xs={12}>
-           <Box bgcolor="beige" height="30vh" padding={3}>
-               <Typography>Not in queue</Typography>
-               <NotInQueue queuees={queueState.queuees}/>
-           </Box>
+           <Grid item xs={6}>
+                <Box bgcolor="beige" height="30vh" padding={3}>
+                    <Typography>Not in queue:</Typography>
+                    <NotInQueue queuees={queueState.queuees}/>
+                </Box>
+           </Grid>
+
+           <Grid item xs={6}>
+                <Box bgcolor="beige" height="30vh" padding={3} textAlign='left' className={classes.infoBox}>
+                    <Typography>Session Info:</Typography>
+                    <Typography display='inline'>Queue session: {queueState.sessionId}</Typography>
+                    <Typography display='inline'>Persons in Queue: {queueState.peopleInQueue}</Typography>
+                    <Typography display='inline'>Number of Supervisors: {queueState.supervisors.length}</Typography>
+                </Box>
            </Grid>
 
        </Grid>
