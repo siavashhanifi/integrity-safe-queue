@@ -1,23 +1,21 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid, Typography, Button } from '@material-ui/core';
+import { Box, Grid, Typography, Button, Paper } from '@material-ui/core';
 import Queue  from './Queue';
 import Supervisors from './Supervisors';
 
 
 const useStyles = makeStyles((theme) => ({
-
-    buttons: {
+buttons: {
         '& > *': {
           margin: theme.spacing(1),
         },
-      },
-
+},
  content:{
     flexGrow: 1,
    
  },
-});
+}));
 
 
 export default function QueueSession() {
@@ -36,9 +34,9 @@ export default function QueueSession() {
             justify="center"
        >
            <Grid item xs={8}> 
-                <Box bgcolor="red" height="50vh" padding={3} >
+                <Paper bgcolor="red" style={{height:"50vh", backgroundColor: 'blue'}} padding={3} >
                     <Typography>Queue</Typography>
-                </Box>
+                </Paper>
            </Grid>
 
            <Grid item xs={4}>
@@ -48,10 +46,12 @@ export default function QueueSession() {
            </Grid>
 
            <Grid item xs={12}>
-                <Box bgcolor="green" height="10vh" padding={3} className={classes.buttons}>
-                    <Button color="primary" variant="contained" space>Join Queue</Button>
-                    <Button color="secondary" variant="contained">Leave Queue</Button>
-                    <Button color="secondary" variant="contained">Leave Session</Button>
+                <Box bgcolor="green" height="10vh" className={classes.buttons}>
+                
+                    <Button color="primary" variant="contained" size="large">Join Queue</Button>
+                    <Button color="secondary" variant="contained" size="large">Leave Queue</Button>
+                    <Button color="secondary" variant="contained" size="large">Leave Session</Button>
+
                 </Box>
            </Grid>
 
