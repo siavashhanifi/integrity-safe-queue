@@ -27,7 +27,7 @@ export default function Supervisors(props) {
         <Grid   container
         spacing={2}
         direction="column"
-        alignItems="center"
+        alignItems="flex-start"
         justify="center">
         {listSupervisors}
         </Grid>

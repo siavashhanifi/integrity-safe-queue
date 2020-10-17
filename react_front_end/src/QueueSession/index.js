@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, Typography, Button, Paper } from '@material-ui/core';
 import Queue  from './Queue';
 import Supervisors from './Supervisors';
+import NotInQueue from './NotInQueue';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -13,7 +14,10 @@ buttons: {
 },
  content:{
     flexGrow: 1,
-   
+    backgroundColor: 'blue',
+    height:'100vh',
+    width: '100vw',
+    margin:'0 auto',
  },
 }));
 
@@ -34,30 +38,31 @@ export default function QueueSession() {
             justify="center"
        >
            <Grid item xs={8}> 
-                <Paper bgcolor="red" style={{height:"50vh", backgroundColor: 'blue'}} padding={3} >
+                <Box bgcolor="beige" height="50vh" padding={3} >
                     <Typography>Queue</Typography>
-                </Paper>
+                    <Queue queuees={queueState.queuees}/>
+                </Box>
            </Grid>
 
            <Grid item xs={4}>
-                <Box bgcolor="blue" height="50vh" padding={3}>
+                <Box bgcolor="beige" height="50vh" padding={3}>
                     <Typography>Supervisors</Typography>
+                    <Supervisors supervisors={queueState.supervisors}/>
                 </Box>
            </Grid>
 
            <Grid item xs={12}>
-                <Box bgcolor="green" height="10vh" className={classes.buttons}>
-                
+                <Box className={classes.buttons}>
                     <Button color="primary" variant="contained" size="large">Join Queue</Button>
                     <Button color="secondary" variant="contained" size="large">Leave Queue</Button>
                     <Button color="secondary" variant="contained" size="large">Leave Session</Button>
-
                 </Box>
            </Grid>
 
            <Grid item xs={12}>
-           <Box bgcolor="yellow" height="30vh" padding={3}>
+           <Box bgcolor="beige" height="30vh" padding={3}>
                <Typography>Not in queue</Typography>
+               <NotInQueue queuees={queueState.queuees}/>
            </Box>
            </Grid>
 

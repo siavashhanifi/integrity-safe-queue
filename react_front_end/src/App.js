@@ -21,9 +21,9 @@ console.log(props.userState.isSupervisor);
   return (
     <React.Fragment>
             <CssBaseline /> 
-            <Container maxWidth={false} className={classes.container} >
+            
                  <QueueSession/>
-            </Container>
+       
     </React.Fragment>
   );
 }

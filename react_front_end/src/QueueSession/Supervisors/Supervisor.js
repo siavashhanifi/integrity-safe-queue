@@ -56,5 +56,5 @@ export default function Student(props) {
         </Grid>
       </Grid>
     );
-  return <Box></Box>;
-}//<div>{supervisor}</div>
+  return <div>{supervisor}</div>;
+}//
