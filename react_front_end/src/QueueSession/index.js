@@ -5,6 +5,7 @@ import Queue  from './Queue';
 import Supervisors from './Supervisors';
 import NotInQueue from './NotInQueue';
 import { Autorenew } from '@material-ui/icons';
+import AlertDialog from './AlertDialog';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +38,7 @@ buttons: {
 
 export default function QueueSession() {
     const classes = useStyles();
+    const userid = 1
     const sessionId = 1337;
     const queueState = {sessionId: 1337,
                         supervisors: [{ name: "Leif", isHelping: true }, { name: "Robert", isHelping: true }, { name: "Anders", isHelping: false }],
@@ -44,13 +46,34 @@ export default function QueueSession() {
                         peopleInQueue: 3,
                     }
 
+    const [alertDialogOpen, alertDialogSetOpen] = React.useState(false);
+    const [alertDialogAction, setAlertDialogAction] = React.useState('');
+
+    const handleJoinQueue = (event) => {
+            //tell backend queuee joined queue
+    }
+
+    const handleLeaveQueue = (event) => {
+        setAlertDialogAction('LEAVE_QUEUE');
+        alertDialogSetOpen(true);
+    }
+
+    const handleLeaveSession = (event) => {
+        setAlertDialogAction('LEAVE_SESSION');
+        alertDialogSetOpen(true);
+    }
+
+
     return (
+
        <Grid container
             spacing={1}
             className={classes.content}
             alignItems="center"
             justify="center"
        >
+           <AlertDialog action={alertDialogAction} open={alertDialogOpen} setOpen={alertDialogSetOpen}/>
+
            <Grid item xs={6}> 
                 <Box bgcolor="white" height="50vh" padding={3} borderRadius={15} >
                     <Typography>Queue:</Typography>
@@ -69,9 +92,9 @@ export default function QueueSession() {
 
            <Grid item xs={12}>
                 <Box className={classes.buttons}>
-                    <Button color="primary" variant="contained" size="large">Join Queue</Button>
-                    <Button color="secondary" variant="contained" size="large">Leave Queue</Button>
-                    <Button color="secondary" variant="contained" size="large">Leave Session</Button>
+                    <Button color="primary" variant="contained" size="large" onClick={handleJoinQueue}>Join Queue</Button>
+                    <Button color="secondary" variant="contained" size="large" onClick={handleLeaveQueue}>Leave Queue</Button>
+                    <Button color="secondary" variant="contained" size="large" onClick={handleLeaveSession}>Leave Session</Button>
                 </Box>
            </Grid>
 
