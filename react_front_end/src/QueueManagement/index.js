@@ -21,8 +21,6 @@ supervisorsBox: {
     overflow: 'auto'
 },
 buttons: {
-    width: '50vw',
-    margin: '0 auto',
         '& > *': {
           margin: theme.spacing(1),
         },
@@ -87,7 +85,7 @@ export default function QueueManagement() {
                 </Box>
            </Grid>
 
-           <Grid item xs={12}>
+           <Grid container item xs={12} direction="column" justify="center" alignItems="center" spacing={0}>
                 <Box className={classes.buttons}>
                     <Button color="primary" variant="contained" size="large" onClick={handleHelpNext}>Help Next</Button>
                     <Button color="secondary" variant="contained" size="large" onClick={handleLeaveSession}>Leave Session</Button>
