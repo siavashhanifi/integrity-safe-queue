@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Typography, Box, Button } from "@material-ui/core";
-import { ArrowForward } from "@material-ui/icons";
+import { Grid } from "@material-ui/core";
 import You from './Queue/You';
 import Queuee from './Queue/Queuee';
 import { blue } from "@material-ui/core/colors";
@@ -13,36 +12,22 @@ const useStyles = makeStyles({
 });
 
 export default function Queue(props) {
-  const classes = useStyles();
-  const userId = 1;
-
-  const listNotInQueue = [];
   const listQueuees = [];
-  var queuee;
-  var index = 1;
-  for(queuee of props.queuees){
-    if (!queuee.inQueue)
-    listNotInQueue.push(
-      <Grid item>
-          <Queuee inQueue={false} />
-      </Grid>
-    );
-    else{
-        if (queuee.id === userId){
-          listQueuees.push(
-            <Grid item>
-              <You/>
-            </Grid>
-          );
-          index++;
-        }
-        else
-          listQueuees.push(
-            <Grid item>
-                <Queuee inQueue={true} number={index++}/>
-            </Grid>
-          );
-      }
+
+  for(var i = 1; i<= props.queuees.nOQueuees; i++){
+    if(i == props.queuees.yourPosition)
+      listQueuees.push(
+        <Grid item>
+          <You/>
+        </Grid>
+      );
+    else
+      listQueuees.push(
+        <Grid item>
+            <Queuee inQueue={true} number={i}/>
+        </Grid>
+      );
+
   }
 
   return (
@@ -53,7 +38,7 @@ export default function Queue(props) {
       alignItems="flex-start"
       justify="flex-start"
     >
-              {listQueuees}
+    {listQueuees}
   </Grid>
   );
 }

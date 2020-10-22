@@ -12,31 +12,26 @@ const useStyles = makeStyles({
 });
 
 export default function NotInQueue(props) {
-  const classes = useStyles();
-  const userId = 1;
 
   const listNotInQueue = [];
 
-  var queuee;
+  for(var i = 1; i<= props.notInQueue.nONotInQueue; i++){
+    if(i == props.notInQueue.yourPosition)
+      listNotInQueue.push(
+        <Grid item>
+          <You/>
+        </Grid>
+      );
+    else
+      listNotInQueue.push(
+        <Grid item>
+            <Queuee inQueue={false}/>
+        </Grid>
+      );
 
-  for(queuee of props.queuees){
-    if(queuee.id === userId && !queuee.inQueue){
-        listNotInQueue.push(
-            <Grid item>
-              <You/>
-            </Grid>
-          );
-        continue;
-    }
-
-    if (!queuee.inQueue)
-    listNotInQueue.push(
-      <Grid item>
-          <Queuee inQueue={false}/>
-      </Grid>
-    );
   }
 
+ 
   return (
   <Grid
       container
@@ -45,7 +40,7 @@ export default function NotInQueue(props) {
       alignItems="flex-start"
       justify="flex-start"
     >
-              {listNotInQueue}
+    {listNotInQueue}
   </Grid>
   );
 }

@@ -4,7 +4,7 @@ import { Box, Grid, Typography, Button, Paper } from '@material-ui/core';
 import Queue  from './Queue';
 import Supervisors from './Supervisors';
 import NotInQueue from './NotInQueue';
-import { Autorenew } from '@material-ui/icons';
+import { queueState } from '../DUMMY_DATA/queue-state';
 import AlertDialog from './AlertDialog';
 
 
@@ -38,13 +38,6 @@ buttons: {
 
 export default function QueueSession() {
     const classes = useStyles();
-    const userid = 1
-    const sessionId = 1337;
-    const queueState = {sessionId: 1337,
-                        supervisors: [{ name: "Leif", isHelping: true }, { name: "Robert", isHelping: true }, { name: "Anders", isHelping: false }],
-                        queuees: [{id: 4, inQueue: true}, {id:0, inQueue: false},{id:1, inQueue: true}, {id:2, inQueue: true}, {id:3, inQueue: false}],
-                        peopleInQueue: 3,
-                    }
 
     const [alertDialogOpen, alertDialogSetOpen] = React.useState(false);
     const [alertDialogAction, setAlertDialogAction] = React.useState('');
@@ -101,7 +94,7 @@ export default function QueueSession() {
            <Grid item xs={6}>
                 <Box bgcolor="white" height="30vh" padding={3} borderRadius={15}>
                     <Typography>Not in queue:</Typography>
-                    <NotInQueue queuees={queueState.queuees}/>
+                    <NotInQueue notInQueue={queueState.notInQueue}/>
                 </Box>
            </Grid>
 
@@ -109,7 +102,7 @@ export default function QueueSession() {
                 <Box bgcolor="white" height="30vh" padding={3} textAlign='left' className={classes.infoBox} borderRadius={15}>
                     <Typography>Session Info:</Typography>
                     <Typography display='inline'>Queue session: {queueState.sessionId}</Typography>
-                    <Typography display='inline'>Persons in Queue: {queueState.peopleInQueue}</Typography>
+                    <Typography display='inline'>Persons in Queue: {queueState.queuees.nOQueuees}</Typography>
                     <Typography display='inline'>Number of Supervisors: {queueState.supervisors.length}</Typography>
                 </Box>
            </Grid>
