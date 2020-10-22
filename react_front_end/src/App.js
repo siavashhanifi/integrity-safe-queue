@@ -4,6 +4,7 @@ import JoinOrCreateSession from './JoinOrCreateSession';
 import { Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import QueueSession from './QueueSession';
+import QueueSessionReduxContainer from './QueueSession/QueueSessionReduxContainer';
 import QueueManagement from './QueueManagement';
 
 
@@ -22,8 +23,8 @@ console.log(props.userState.isSupervisor);
   return (
     <React.Fragment>
             <CssBaseline /> 
-                 <QueueManagement/>
-       
+                 <QueueSessionReduxContainer/>
+      
     </React.Fragment>
   );
 }

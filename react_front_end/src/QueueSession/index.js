@@ -4,7 +4,7 @@ import { Box, Grid, Typography, Button, Paper } from '@material-ui/core';
 import Queue  from './Queue';
 import Supervisors from './Supervisors';
 import NotInQueue from './NotInQueue';
-import { queueState } from '../DUMMY_DATA/queue-state';
+//import { queueState } from '../DUMMY_DATA/queue-state';
 import AlertDialog from './AlertDialog';
 
 
@@ -36,9 +36,9 @@ buttons: {
 }));
 
 
-export default function QueueSession() {
+export default function QueueSession(props) {
     const classes = useStyles();
-
+    const queueState = props.queueState;
     const [alertDialogOpen, alertDialogSetOpen] = React.useState(false);
     const [alertDialogAction, setAlertDialogAction] = React.useState('');
 
