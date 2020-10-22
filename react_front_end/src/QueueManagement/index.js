@@ -35,11 +35,11 @@ buttons: {
 }));
 
 
-export default function QueueManagement() {
+export default function QueueManagement(props) {
     const classes = useStyles();
 
-    const supervisorPassword = "XyzdWtf";
-
+    const supervisorPassword = props.supervisorPassword;
+    const queueState = props.queueState;
 
     const [alertDialogOpen, alertDialogSetOpen] = React.useState(false);
     const [alertDialogAction, setAlertDialogAction] = React.useState('');

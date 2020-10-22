@@ -10,7 +10,7 @@ import { queueState } from '../../DUMMY_DATA/queue-state';
 };*/
 
 const initialState = { queue: queueState,         //dummy data
-supervisorPassword: null
+supervisorPassword: "XxaSdA"
 };
 
 const queueSessionReducer = createReducer(initialState, {

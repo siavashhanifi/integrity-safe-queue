@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import QueueSession from './QueueSession';
 import QueueSessionReduxContainer from './QueueSession/QueueSessionReduxContainer';
 import QueueManagement from './QueueManagement';
+import QueueManagementReduxContainer from './QueueManagement/QueueManagementReduxContainer';
 
 
 const useStyles = makeStyles({
@@ -23,7 +24,7 @@ console.log(props.userState.isSupervisor);
   return (
     <React.Fragment>
             <CssBaseline /> 
-                 <QueueSessionReduxContainer/>
+                 <QueueManagementReduxContainer/>
       
     </React.Fragment>
   );
