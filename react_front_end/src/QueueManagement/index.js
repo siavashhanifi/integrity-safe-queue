@@ -1,10 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid, Typography, Button, Paper } from '@material-ui/core';
+import { Box, Grid, Typography, Button } from '@material-ui/core';
 import Queue  from './Queue';
 import Supervisors from './Supervisors';
 import NotInQueue from './NotInQueue';
-import { Autorenew } from '@material-ui/icons';
+import { queueState } from '../DUMMY_DATA/queue-state';
 import AlertDialog from './AlertDialog';
 import PasswordField from './PasswordField';
 
@@ -37,14 +37,9 @@ buttons: {
 
 export default function QueueManagement() {
     const classes = useStyles();
-    const userid = 1
-    const sessionId = 1337;
+
     const supervisorPassword = "XyzdWtf";
-    const queueState = {sessionId: 1337,
-                        supervisors: [{ name: "Leif", isHelping: true }, { name: "Robert", isHelping: true }, { name: "Anders", isHelping: false }],
-                        queuees: [{id: 4, inQueue: true}, {id:0, inQueue: false},{id:1, inQueue: true}, {id:2, inQueue: true}, {id:3, inQueue: false}],
-                        peopleInQueue: 3,
-                    }
+
 
     const [alertDialogOpen, alertDialogSetOpen] = React.useState(false);
     const [alertDialogAction, setAlertDialogAction] = React.useState('');
@@ -95,7 +90,7 @@ export default function QueueManagement() {
            <Grid item xs={6}>
                 <Box bgcolor="white" height="30vh" padding={3} borderRadius={15}>
                     <Typography>Not in queue:</Typography>
-                    <NotInQueue queuees={queueState.queuees}/>
+                    <NotInQueue notInQueue={queueState.notInQueue}/>
                 </Box>
            </Grid>
 
@@ -105,7 +100,7 @@ export default function QueueManagement() {
                     <Grid container wrap='wrap' spacing={1}>
                         <Grid item xs={6}> <Typography >Queue session: {queueState.sessionId}</Typography></Grid>
                         <Grid item xs={6}><Typography >Supervisor Password: </Typography><PasswordField password={supervisorPassword}></PasswordField></Grid>
-                        <Grid item xs={6}><Typography >Persons in Queue: {queueState.peopleInQueue}</Typography></Grid>
+                        <Grid item xs={6}><Typography >Persons in Queue: {queueState.queuees.nOQueuees}</Typography></Grid>
                         <Grid item xs={6}><Typography >Number of Supervisors: {queueState.supervisors.length}</Typography> </Grid>
                     </Grid>
                 </Box>
