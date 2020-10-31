@@ -8,6 +8,7 @@ import NotInQueue from './NotInQueue';
 import AlertDialog from './AlertDialog';
 
 
+
 const useStyles = makeStyles((theme) => ({
 infoBox: {
         '& > *': {
@@ -20,8 +21,6 @@ supervisorsBox: {
     overflow: 'auto'
 },
 buttons: {
-    width: '50vw',
-    margin: '0 auto',
         '& > *': {
           margin: theme.spacing(1),
         },
@@ -42,8 +41,9 @@ export default function QueueSession(props) {
     const [alertDialogOpen, alertDialogSetOpen] = React.useState(false);
     const [alertDialogAction, setAlertDialogAction] = React.useState('');
 
+
     const handleJoinQueue = (event) => {
-            //tell backend queuee joined queue
+        //tell backend queuee joined queue
     }
 
     const handleLeaveQueue = (event) => {
@@ -83,7 +83,7 @@ export default function QueueSession(props) {
                 </Box>
            </Grid>
 
-           <Grid item xs={12}>
+           <Grid container item xs={12} direction="column" justify="center" alignItems="center" spacing={0}>
                 <Box className={classes.buttons}>
                     <Button color="primary" variant="contained" size="large" onClick={handleJoinQueue}>Join Queue</Button>
                     <Button color="secondary" variant="contained" size="large" onClick={handleLeaveQueue}>Leave Queue</Button>
