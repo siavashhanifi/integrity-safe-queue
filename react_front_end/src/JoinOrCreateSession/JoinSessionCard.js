@@ -9,6 +9,7 @@ import {
   Card,
 } from "@material-ui/core";
 import RadioButtons from './RadioButtons';
+import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles({
   cardContent: {
@@ -34,6 +35,16 @@ export default function JoinSessionCard() {
     setPassword(event.target.value);
   };
   
+  var nextPage;
+  const [redirect, setRedirect] = React.useState(false);
+  const handleJoin = () => {
+    setRedirect(true);
+  }
+  if(role === 'student')
+    nextPage="/queue";
+  else
+    nextPage="/queuemanagement";
+
 
   return (
 
@@ -78,8 +89,9 @@ export default function JoinSessionCard() {
             : null }
 
           <Grid item>
-            <Button color="primary" variant="contained">
+            <Button color="primary" variant="contained" onClick={handleJoin}>
               Join
+              {redirect ? <Redirect to={nextPage}/> : null}         
             </Button>
           </Grid>
         </Grid>

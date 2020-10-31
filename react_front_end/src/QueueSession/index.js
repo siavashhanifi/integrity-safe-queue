@@ -4,8 +4,9 @@ import { Box, Grid, Typography, Button, Paper } from '@material-ui/core';
 import Queue  from './Queue';
 import Supervisors from './Supervisors';
 import NotInQueue from './NotInQueue';
-import { queueState } from '../DUMMY_DATA/queue-state';
+//import { queueState } from '../DUMMY_DATA/queue-state';
 import AlertDialog from './AlertDialog';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,8 +21,6 @@ supervisorsBox: {
     overflow: 'auto'
 },
 buttons: {
-    width: '50vw',
-    margin: '0 auto',
         '& > *': {
           margin: theme.spacing(1),
         },
@@ -36,14 +35,15 @@ buttons: {
 }));
 
 
-export default function QueueSession() {
+export default function QueueSession(props) {
     const classes = useStyles();
-
+    const queueState = props.queueState;
     const [alertDialogOpen, alertDialogSetOpen] = React.useState(false);
     const [alertDialogAction, setAlertDialogAction] = React.useState('');
 
+
     const handleJoinQueue = (event) => {
-            //tell backend queuee joined queue
+        //tell backend queuee joined queue
     }
 
     const handleLeaveQueue = (event) => {
@@ -83,7 +83,7 @@ export default function QueueSession() {
                 </Box>
            </Grid>
 
-           <Grid item xs={12}>
+           <Grid container item xs={12} direction="column" justify="center" alignItems="center" spacing={0}>
                 <Box className={classes.buttons}>
                     <Button color="primary" variant="contained" size="large" onClick={handleJoinQueue}>Join Queue</Button>
                     <Button color="secondary" variant="contained" size="large" onClick={handleLeaveQueue}>Leave Queue</Button>

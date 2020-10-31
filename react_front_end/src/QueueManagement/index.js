@@ -4,9 +4,10 @@ import { Box, Grid, Typography, Button } from '@material-ui/core';
 import Queue  from './Queue';
 import Supervisors from './Supervisors';
 import NotInQueue from './NotInQueue';
-import { queueState } from '../DUMMY_DATA/queue-state';
 import AlertDialog from './AlertDialog';
 import PasswordField from './PasswordField';
+
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,11 +36,11 @@ buttons: {
 }));
 
 
-export default function QueueManagement() {
+export default function QueueManagement(props) {
     const classes = useStyles();
 
-    const supervisorPassword = "XyzdWtf";
-
+    const supervisorPassword = props.supervisorPassword;
+    const queueState = props.queueState;
 
     const [alertDialogOpen, alertDialogSetOpen] = React.useState(false);
     const [alertDialogAction, setAlertDialogAction] = React.useState('');
