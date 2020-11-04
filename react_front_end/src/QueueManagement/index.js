@@ -67,14 +67,14 @@ export default function QueueManagement(props) {
 
            <Grid item xs={6}> 
                 <Box bgcolor="white" height="50vh" padding={3} borderRadius={15} >
-                    <Typography>Queue:</Typography>
+                    <Typography variant="overline">Queue:</Typography>
                     <Queue queuees={queueState.queuees}/>
                 </Box>
            </Grid>
 
            <Grid item xs={6}>
                 <Box bgcolor="white" height="50vh" padding={3} borderRadius={15}>
-                    <Typography>Supervisors:</Typography>
+                    <Typography variant="overline">Supervisors:</Typography>
                     <Box className={classes.supervisorsBox}>
                         <Supervisors supervisors={queueState.supervisors}/>
                     </Box>
@@ -90,20 +90,22 @@ export default function QueueManagement(props) {
 
            <Grid item xs={6}>
                 <Box bgcolor="white" height="30vh" padding={3} borderRadius={15}>
-                    <Typography>Not in queue:</Typography>
+                    <Typography variant="overline">Not in queue:</Typography>
                     <NotInQueue notInQueue={queueState.notInQueue}/>
                 </Box>
            </Grid>
 
            <Grid item xs={6}>
                 <Box bgcolor="white" height="30vh" padding={3} textAlign='left' className={classes.infoBox} borderRadius={15}>
-                    <Typography>Session Info:</Typography>
-                    <Grid container wrap='wrap' spacing={1}>
-                        <Grid item xs={6}> <Typography >Queue session: {queueState.sessionId}</Typography></Grid>
-                        <Grid item xs={6}><Typography >Supervisor Password: </Typography><PasswordField password={supervisorPassword}></PasswordField></Grid>
-                        <Grid item xs={6}><Typography >Persons in Queue: {queueState.queuees.nOQueuees}</Typography></Grid>
-                        <Grid item xs={6}><Typography >Number of Supervisors: {queueState.supervisors.length}</Typography> </Grid>
-                    </Grid>
+                    <Typography variant="overline">Session Info:</Typography>
+                    <Box>
+                        <Grid container direction="row" wrap spacing={1}>
+                            <Grid item xs={6}><Typography variant="overline">Queue session: {queueState.sessionId}</Typography></Grid>
+                            <Grid item xs={6}><Typography variant="overline">Supervisor Password: </Typography><PasswordField password={supervisorPassword}></PasswordField></Grid>
+                            <Grid item xs={6}><Typography variant="overline">Persons in Queue: {queueState.queuees.nOQueuees}</Typography></Grid>
+                            <Grid item xs={6}><Typography variant="overline">Number of Supervisors: {queueState.supervisors.length}</Typography> </Grid>
+                        </Grid>
+                    </Box>
                 </Box>
            </Grid>
 
