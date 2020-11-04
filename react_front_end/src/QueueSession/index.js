@@ -69,14 +69,14 @@ export default function QueueSession(props) {
 
            <Grid item xs={6}> 
                 <Box bgcolor="white" height="50vh" padding={3} borderRadius={15} >
-                    <Typography>Queue:</Typography>
+                    <Typography align="center" variant="overline" >Queue:</Typography>
                     <Queue queuees={queueState.queuees}/>
                 </Box>
            </Grid>
 
            <Grid item xs={6}>
                 <Box bgcolor="white" height="50vh" padding={3} borderRadius={15}>
-                    <Typography>Supervisors:</Typography>
+                    <Typography variant="overline">Supervisors:</Typography>
                     <Box className={classes.supervisorsBox}>
                         <Supervisors supervisors={queueState.supervisors}/>
                     </Box>
@@ -93,17 +93,21 @@ export default function QueueSession(props) {
 
            <Grid item xs={6}>
                 <Box bgcolor="white" height="30vh" padding={3} borderRadius={15}>
-                    <Typography>Not in queue:</Typography>
+                    <Typography variant="overline">Not in queue:</Typography>
                     <NotInQueue notInQueue={queueState.notInQueue}/>
                 </Box>
            </Grid>
 
            <Grid item xs={6}>
                 <Box bgcolor="white" height="30vh" padding={3} textAlign='left' className={classes.infoBox} borderRadius={15}>
-                    <Typography>Session Info:</Typography>
-                    <Typography display='inline'>Queue session: {queueState.sessionId}</Typography>
-                    <Typography display='inline'>Persons in Queue: {queueState.queuees.nOQueuees}</Typography>
-                    <Typography display='inline'>Number of Supervisors: {queueState.supervisors.length}</Typography>
+                    <Typography variant="overline">Session Info:</Typography>
+                    <Box>
+                        <Grid container direction="column" wrap>
+                            <Grid item><Typography display='inline' variant="overline">Queue session: {queueState.sessionId}</Typography></Grid>
+                            <Grid item><Typography display='inline' variant="overline">Persons in Queue: {queueState.queuees.nOQueuees}</Typography></Grid>
+                            <Grid item><Typography display='inline' variant="overline">Number of Supervisors: {queueState.supervisors.length}</Typography></Grid>
+                        </Grid>
+                    </Box>
                 </Box>
            </Grid>
 
