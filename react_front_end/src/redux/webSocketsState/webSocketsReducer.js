@@ -1,13 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit'
 
 
-const initialState = {};
+const initialState = {webSocket: null};
 
 
 const webSocketsReducer = createReducer(initialState, {
 
     SET_WEBSOCKET: (state, action) => {
-        state = action.payload.websocket;
+        state.webSocket = action.payload.webSocket;
     },
 
 });

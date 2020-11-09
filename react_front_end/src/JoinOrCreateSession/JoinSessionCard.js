@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function JoinSessionCard() {
+export default function JoinSessionCard(props) {
   const classes = useStyles();
   const [role, setRole] = React.useState('student');
 
@@ -38,6 +38,7 @@ export default function JoinSessionCard() {
   var nextPage;
   const [redirect, setRedirect] = React.useState(false);
   const handleJoin = () => {
+    props.setWebsocket('hej');
     setRedirect(true);
   }
   if(role === 'student')

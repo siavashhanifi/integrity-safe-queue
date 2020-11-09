@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function JoinOrCreateSession() {
+export default function JoinOrCreateSession(props) {
     const classes = useStyles();
  
 
@@ -28,8 +28,8 @@ export default function JoinOrCreateSession() {
                 alignItems="center"
                 justify="center"
             >
-                <Grid item xs={12}><JoinSessionCard/></Grid>
-                <Grid item xs={12}><CreateSessionCard/></Grid>
+                <Grid item xs={12}><JoinSessionCard webSocket={props.webSocket} setWebsocket={props.setWebsocket}/></Grid>
+                <Grid item xs={12}><CreateSessionCard webSocket={props.webSocket} setWebsocket={props.setWebsocket}/></Grid>
             </Grid>
         </div>
     );

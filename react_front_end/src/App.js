@@ -1,6 +1,6 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import JoinOrCreateSession from "./JoinOrCreateSession";
+import JoinOrCreateSessionReduxContainer from "./JoinOrCreateSession/JoinOrCreateSessionReduxContainer";
 import { Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import QueueSession from "./QueueSession";
@@ -26,7 +26,7 @@ function App(props) {
       <Router>
         <CssBaseline />
         <Route exact path="/">
-          <JoinOrCreateSession/>
+          <JoinOrCreateSessionReduxContainer/>
         </Route>
         <Route exact path="/queue">
           <QueueSessionReduxContainer/>
