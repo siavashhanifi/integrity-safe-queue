@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import RadioButtons from './RadioButtons';
 import { Redirect } from 'react-router-dom';
+import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 const useStyles = makeStyles({
   cardContent: {
@@ -38,7 +39,9 @@ export default function JoinSessionCard(props) {
   var nextPage;
   const [redirect, setRedirect] = React.useState(false);
   const handleJoin = () => {
-    props.setWebsocket('hej');
+    const webSocket = new W3CWebSocket('ws://127.0.0.1:8000');
+    props.setWebsocket(webSocket);
+
     setRedirect(true);
   }
   if(role === 'student')
