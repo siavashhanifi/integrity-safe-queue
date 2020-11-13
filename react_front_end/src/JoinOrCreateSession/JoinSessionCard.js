@@ -39,8 +39,8 @@ export default function JoinSessionCard(props) {
   var nextPage;
   const [redirect, setRedirect] = React.useState(false);
   const handleJoin = () => {
-    const webSocket = new W3CWebSocket('ws://127.0.0.1:8000');
-    props.setWebsocket(webSocket);
+    //const webSocket = new WebSocket('ws://127.0.0.1:8000');
+    props.createWebSocket('ws://127.0.0.1:8000');
 
     setRedirect(true);
   }

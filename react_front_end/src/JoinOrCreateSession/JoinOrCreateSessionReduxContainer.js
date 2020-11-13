@@ -3,11 +3,15 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
     return {
-            webSocket: state.rootReducer.webSocketsReducer 
+            webSocket: state.rootReducer.webSocketReducer.webSocket, 
         };//userState: state.terminalOutput.textHistory};
 }
 
-const setWebsocket = (webSocket) => {
+const createWebSocketAction = (url) => {
+  const webSocket = new WebSocket(url, "protocolOne");
+  webSocket.onopen = function (event) {
+    webSocket.send("Here's some text that the server is urgently awaiting!"); 
+  };
     return{
         type: "SET_WEBSOCKET",
         payload: {
@@ -19,8 +23,8 @@ const setWebsocket = (webSocket) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-      setWebsocket: (webSocket) => {
-        dispatch(setWebsocket(webSocket));
+      createWebSocket: (url) => {
+        dispatch(createWebSocketAction(url));
       }
     }
   }
